@@ -15,19 +15,29 @@ class ProductListScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Products'),
+        title: const Text('Products'),
       ),
       body: controller.isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : controller.error != null
               ? Center(child: Text('Error: ${controller.error}'))
-              : ListView.builder(
-                  padding: const EdgeInsets.all(10),
-                  itemCount: controller.products.length,
-                  itemBuilder: (context, index) {
-                    final product = controller.products[index];
-                    return ProductCard(product: product);
-                  },
+              : Container(
+                  color: Colors.grey[200],
+                  child: GridView.builder(
+                    padding: const EdgeInsets.all(10),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2, // Two items per row
+                      crossAxisSpacing: 10, // Space between columns
+                      mainAxisSpacing: 10, // Space between rows
+                      childAspectRatio: 3 / 4, // Aspect ratio of cards
+                    ),
+                    itemCount: controller.products.length,
+                    itemBuilder: (context, index) {
+                      final product = controller.products[index];
+                      return ProductCard(product: product);
+                    },
+                  ),
                 ),
     );
   }

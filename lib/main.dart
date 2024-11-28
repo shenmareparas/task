@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
           update: (_, repository, __) => ProductController(repository),
         ),
       ],
-      child: MaterialApp(
+      child: const MaterialApp(
         title: 'Products App',
         home: ProductListScreen(),
       ),
