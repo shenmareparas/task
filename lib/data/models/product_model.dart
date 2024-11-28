@@ -18,7 +18,7 @@ class ProductModel {
       id: json['id'],
       title: json['title'],
       description: json['description'],
-      price: json['price'], // Directly map the integer value
+      price: json['price'],
       image: json['images']?.isNotEmpty == true ? json['images'][0] : '',
     );
   }
